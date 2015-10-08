@@ -1,0 +1,8 @@
+---
+
+- name: Copy Index File.
+  copy:  src={{file_name}}  dest={{item.documentroot}} mode=644
+  with_items: apache_vhosts
+  
+- name: Copy Mongo Configuration File.
+  copy:  src={{mongo_conf_file_name}}  dest={{mongo_conf_path}} mode=644

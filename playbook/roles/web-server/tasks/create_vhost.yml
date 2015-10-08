@@ -1,0 +1,22 @@
+---
+
+- name: Add apache vhosts configuration.
+  template:
+    src={{ item.machinename }}.j2
+    dest={{ apache_conf_path }}/{{ item.servername }}.conf
+    owner=root group=root mode=644 
+  with_items: apache_vhosts 
+  when: apache_create_vhosts
+  
+- name: Apache | Create document root for virtual hosts
+  file:
+    path={{ item.documentroot }}
+    state=directory recurse=yes
+    owner=root group=root mode=0755
+  with_items: apache_vhosts
+#  notify: apache-restart
+ 
+- name: Activate the vhosts 
+  command: a2ensite {{ item.servername }}.conf 
+  with_items: apache_vhosts
+  notify: apache-restart

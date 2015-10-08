@@ -1,0 +1,13 @@
+haproxy_default_path: "/etc/default/"
+
+haproxy_default_file: "haproxy"
+
+haproxy_conf_path: "/etc/haproxy/"
+
+haproxy_conf_path: "haproxy.cfg"
+
+server:
+
+- {ip: "192.168.100.161", servername: "web-server-1"}
+
+- {ip: "192.168.100.157", servername: "web-server-2"}

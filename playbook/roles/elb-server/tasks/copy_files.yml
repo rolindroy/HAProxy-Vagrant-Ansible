@@ -1,0 +1,15 @@
+---
+
+- name: Create HAProxy Default Configuration File.
+  template: 
+    src=default.j2 
+    dest="{{ haproxy_default_path }}""{{ haproxy_default_file }}"
+    owner=root group=root mode=644 
+  
+- name: Create HAProxy Conf File.
+  template: 
+    src=haproxy.j2 
+    dest="{{ haproxy_conf_path }}""{{ haproxy_conf_path }}"
+    owner=root group=root mode=644 
+  notify: haproxy-restart
+  

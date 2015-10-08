@@ -1,0 +1,9 @@
+---
+
+- include: install.yml
+- include: create_vhost.yml
+- include: copy_files.yml
+- include: update_hostfile.yml
+
+- name: mongo start
+  shell: sudo /usr/bin/mongod --config /etc/"{{ mongo_conf_file_name }}"

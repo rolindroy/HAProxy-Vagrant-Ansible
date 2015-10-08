@@ -1,0 +1,4 @@
+---
+
+- include: install.yml
+- include: copy_files.yml
