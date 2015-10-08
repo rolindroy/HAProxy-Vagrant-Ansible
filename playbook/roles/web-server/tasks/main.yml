@@ -1,9 +1,15 @@
----
+---    
 
-- include: install.yml
-- include: create_vhost.yml
-- include: copy_files.yml
-- include: update_hostfile.yml
+- name: update apt cache
+  apt: update_cache=yes
+      
+- name: Install Apache and its modules
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - apache2
 
-- name: mongo start
-  shell: sudo /usr/bin/mongod --config /etc/"{{ mongo_conf_file_name }}"
+- name: Create Index.html File.
+  template: 
+    src=index.j2 
+    dest="{{ file_path }}""{{ file_name }}"
+    owner=root group=root mode=644 

@@ -1,0 +1,11 @@
+[all]
+elb-server
+web-server-1
+web-server-2
+
+[elb]
+elb-server
+
+[web]
+web-server-1
+web-server-2

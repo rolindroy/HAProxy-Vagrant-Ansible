@@ -4,7 +4,9 @@ haproxy_default_file: "haproxy"
 
 haproxy_conf_path: "/etc/haproxy/"
 
-haproxy_conf_path: "haproxy.cfg"
+haproxy_conf_file: "haproxy.cfg"
+
+default_port: "80"
 
 server:
 

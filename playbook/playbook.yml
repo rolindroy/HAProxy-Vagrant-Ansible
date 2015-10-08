@@ -1,5 +1,5 @@
 ---
-- hosts: elb-server
+- hosts: elb
   user: vagrant
   sudo: yes
   
@@ -7,25 +7,10 @@
     - elb-server
     
     
-- hosts: web-server-1
+- hosts: web
   user: vagrant
   sudo: yes
   
-  task:
-    - name: Install Apache and its modules
-      apt: pkg={{ item }} state=latest
-      with_items:
-        - apache2
+  roles:
+    - web-server
         
-- hosts: web-server-1
-  user: vagrant
-  sudo: yes
-  
-  task:
-    - name: Install Apache and its modules
-      apt: pkg={{ item }} state=latest
-      with_items:
-        - apache2
-    
-
-    

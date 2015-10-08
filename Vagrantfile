@@ -14,8 +14,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     elb_cluster.each_with_index do |(hostname, info), index|
         config.vm.define hostname do |cfg|
-
           cfg.vm.provider :virtualbox do |vb, override|
+            if hostname == 'elb-server' 
+                override.vm.network :forwarded_port, guest: 8080, host: 8080
+                override.vm.network :forwarded_port, guest: 80, host: 8081
+            end
             override.vm.network :public_network, ip: "#{info[:ip]}"
             override.vm.hostname = hostname
             vb.name = 'vagrant-' + hostname
@@ -25,6 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
      ansible.playbook = "playbook/playbook.yml"
+     ansible.inventory_path = "hosts"
+     ansible.verbose = 'vvvv'
   end
 
 end

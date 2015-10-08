@@ -22,7 +22,7 @@ backend webservers
     option forwardfor
     option http-server-close
     {% for host in server %}
-    server {{ host.servername }} {{ host.ip }} maxconn 32 check
+    server {{ host.servername }} {{ host.ip }}:{{ default_port }} maxconn 32 check
     {% endfor %}
 
 listen admin
