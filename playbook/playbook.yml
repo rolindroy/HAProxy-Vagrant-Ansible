@@ -1,4 +1,5 @@
 ---
+
 - hosts: elb
   user: vagrant
   sudo: yes
